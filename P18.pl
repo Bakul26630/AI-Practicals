@@ -1,0 +1,22 @@
+% Write a program in PROLOG to implement merge (L1, L2, L3) where L1 is
+% first ordered list and L2 is second ordered list and L3 represents the
+% merged list.
+merge([],L2,L3):-
+	append(L2,[],L3).
+
+merge(L1,[],L3):-
+	append(L1,[],L3).
+
+merge([H1|T1],[H2|T2],L3):-
+	H1>=H2,
+	merge(T1,T2,L4),
+	append([H1],L4,L5),
+	append([H2],L5,L6),
+	L3=L6.
+
+merge([H1|T1],[H2|T2],L3):-
+	H1<H2,
+	merge(T1,T2,L4),
+	append([H2],L4,L5),
+	append([H1],L5,L6),
+	L3=L6.
